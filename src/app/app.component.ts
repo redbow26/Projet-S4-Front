@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
       item.push({ label: 'Logout',  command: (onClick) => this.logout(), routerLink: '' });
     } else {
       item.push({ label: 'Login',  routerLink: '/login'});
+      item.push({ label: 'Register',  routerLink: '/register'});
     }
     item.push({ label: 'RO',  routerLink: '/ro'});
     return item;

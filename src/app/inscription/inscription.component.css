@@ -1,0 +1,31 @@
+#body {
+  font-weight: bold;
+  background-color: #595861;
+  color: white;
+}
+
+#form {
+  text-align: center;
+  padding-left: 33%;
+  padding-right: 33%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.red {
+  color: #ff0f0f;
+}
+.card-panel {
+  background-color: #3a383d;
+  border: solid 1px #ff0f0f;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+input {
+  border-radius: 20px;
+  border: solid 2px black;
+  padding: 5px;
+}

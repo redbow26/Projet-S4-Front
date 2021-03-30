@@ -1,0 +1,49 @@
+<div id="body">
+  <form id="form" [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstname">Nom :</label><br>
+      <input id="firstname" type="text" class="form-control" formControlName="firstname">
+      <div *ngIf="firstname.invalid && firstname.touched" class="card-panel red accent-1">
+        Le nom doit être composé de entre 2 et 100 caractères.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Prénom :</label><br>
+      <input id="name" type="text" class="form-control" formControlName="name">
+      <div *ngIf="name.invalid && name.touched" class="card-panel red accent-1">
+        Le prénom doit être composé de entre 2 et 100 caractères.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nickname">Pseudo : </label><br>
+      <input id="nickname" type="text" class="form-control" formControlName="nickname">
+      <div *ngIf="nickname.invalid && nickname.touched" class="card-panel red accent-1">
+        Le pseudo doit être composé de entre 2 et 100 caractères.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email :</label><br>
+      <input id="email" type="text" class="form-control" formControlName="email">
+      <div *ngIf="email.invalid && email.touched" class="card-panel red accent-1">
+        L' e-mail est invalide.
+      </div>
+    </div>
+    <div formGroupName="password">
+      <div class="form-group">
+        <label for="pwd">Mot de passe :</label><br>
+        <input id="pwd" type="password" class="form-control" formControlName="pwd">
+        <div *ngIf="pwd.invalid && pwd.touched" class="card-panel red accent-1">
+          Le mot de passe doit comporter au minimum 8 caractères dont au moins une majuscule et un chiffre.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPwd">Confirmer le mot de passe :</label><br>
+        <input id="confirmPwd" type="password" class="form-control" formControlName="confirmPwd">
+        <div *ngIf="password.invalid && confirmPwd.touched" class="card-panel red accent-1">
+          Les mots de passe ne correspondent pas.
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!formulaire.valid">Valide</button>
+  </form>
+</div>
