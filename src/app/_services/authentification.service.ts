@@ -77,7 +77,7 @@ export class AuthentificationService {
     this.stopRefreshTokenTimer();
     this.userSubject.next(ANONYMOUS_USER);
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
 
