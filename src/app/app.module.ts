@@ -21,11 +21,10 @@ import {UserService} from './_services/user.service';
 import { LpSolverTestComponent } from './lp-solver-test/lp-solver-test.component';
 import {MarkdownModule} from 'ngx-markdown';
 import { AccueilComponent } from './accueil/accueil.component';
-import {MenubarModule} from 'primeng/menubar';
+import { FormGameComponent } from './form-game/form-game.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
-import { FormGameComponent } from './form-game/form-game.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -35,22 +34,10 @@ registerLocaleData(localeFr, 'fr');
     LoginComponent,
     ProfileComponent,
     LpSolverTestComponent,
-    FormGameComponent
+    FormGameComponent,
     LpSolverTestComponent,
     AccueilComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MarkdownModule.forRoot(),
-        AppRoutingModule,
-        MomentModule,
-        MessagesModule,
-        ToastModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -61,7 +48,7 @@ registerLocaleData(localeFr, 'fr');
     ToastModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MenubarModule,
+    FormsModule,
     TabMenuModule,
     CardModule,
     ButtonModule

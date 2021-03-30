@@ -1,11 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
-import {UserInfo} from '../_models/user-info';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
-import {Jeux} from '../_models/jeux';
-import {catchError, map} from 'rxjs/operators';
 import {Jeux} from '../_models/jeux';
 
 const httpOptions = {
@@ -35,12 +32,13 @@ export class JeuxService {
       categories: jeux.categorie,
       mecanique: jeux.mecanique
     }, httpOptions).pipe(
-        tap(rep => console.log(rep)),
-        shareReplay(),
-        catchError(err => {
-          return throwError(err);
-          // return of('');
-        }));
+      tap(rep => console.log(rep)),
+      shareReplay(),
+      catchError(err => {
+        return throwError(err);
+        // return of('');
+      }));
+  }
 
   getJeux(): Observable<Jeux[]> {
     return this.http.get<any>(environment.apiUrl + '/jeux', httpOptions)
