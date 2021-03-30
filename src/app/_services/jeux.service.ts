@@ -43,7 +43,6 @@ export class JeuxService {
   }
 
   postJeu(jeux: Jeux): void {
-    console.log(jeux);
     this.http.post(environment.apiUrl + '/jeux', {
       nom: jeux.nom,
       description: jeux.description,
@@ -57,6 +56,17 @@ export class JeuxService {
       duree: jeux.duree,
       categories: jeux.categorie,
       mecanique: jeux.mecanique
+    }, httpOptions).subscribe(rep => {
+      console.log(rep);
+      this.router.navigateByUrl('/');
+    });
+  }
+
+  postComment(comment, id: number): void {
+    this.http.post(environment.apiUrl + '/commentaires', {
+      commentaire: comment.commentaire,
+      note: comment.note,
+      jeu_id: id
     }, httpOptions).subscribe(rep => {
       console.log(rep);
       this.router.navigateByUrl('/');

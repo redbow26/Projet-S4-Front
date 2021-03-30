@@ -1,0 +1,18 @@
+<div class="p-fluid p-formgrid p-grid" [formGroup]="form" >
+  <div class="p-field p-col">
+    <label for="commentaire">Commentaire</label>
+    <input id="commentaire" type="text" pInputText formControlName="commentaire">
+    <div *ngIf="form.get('commentaire').invalid && form.get('commentaire').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+  <label for="note">Note</label>
+  <input id="note" type="text" pInputText formControlName="note">
+  <div *ngIf="form.get('note').invalid && form.get('note').touched" class="card-panel red accent-1">
+    Erreur
+  </div>
+</div>
+
+  <button (click)="sendForm()">Valider</button>
+</div>

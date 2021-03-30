@@ -45,10 +45,6 @@ export class FormGameComponent implements OnInit {
       }
     );
 
-    console.log(this.themes);
-    console.log(this.editeurs);
-    console.log(this.mecaniques);
-
     this.form = new FormGroup({
       nom: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       description: new FormControl('', Validators.required),

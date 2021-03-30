@@ -3,6 +3,7 @@ import {MessageService} from 'primeng/api';
 import {JeuxService} from '../_services/jeux.service';
 import {Jeux} from '../_models/jeux';
 import {Router} from '@angular/router';
+import {AuthentificationService} from '../_services/authentification.service';
 
 @Component({
   selector: 'app-accueil',
@@ -15,10 +16,12 @@ export class AccueilComponent implements OnInit {
   mode = 0;
   modeTheme = 0;
   icon = '';
-  modal = false;
+  modalDetail = false;
+  modalForm = false;
   selectedId: number;
 
-  constructor(public router: Router, public messageService: MessageService, public jeuxService: JeuxService) {
+  constructor(public router: Router, public messageService: MessageService,
+              public jeuxService: JeuxService, public authService: AuthentificationService) {
     this.loading = false;
     this.items = [];
   }
@@ -63,8 +66,13 @@ export class AccueilComponent implements OnInit {
     }
   }
 
-  voirJeux(id: number): void {
+  voirDetail(id: number): void {
     this.selectedId = id;
-    this.modal = true;
+    this.modalDetail = true;
+  }
+
+  voirForm(id: number): void {
+    this.selectedId = id;
+    this.modalForm = true;
   }
 }
