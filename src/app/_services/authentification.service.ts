@@ -107,5 +107,4 @@ export class AuthentificationService {
   private stopRefreshTokenTimer(): void {
     clearTimeout(this.refreshTokenTimeout);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem, MessageService} from 'primeng/api';
+import {MessageService} from 'primeng/api';
 import {JeuxService} from '../_services/jeux.service';
 import {Jeux} from '../_models/jeux';
 
@@ -25,7 +25,7 @@ export class AccueilComponent implements OnInit {
         this.loading = false;
       },
       (err) => {
-        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir le profil de l\'utilisateur' , key: 'main'});
+        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
         this.loading = false;
       }
     );
