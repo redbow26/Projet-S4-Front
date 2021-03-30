@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {JeuxService} from '../_services/jeux.service';
 import {Jeux} from '../_models/jeux';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
@@ -11,11 +12,13 @@ import {Jeux} from '../_models/jeux';
 export class AccueilComponent implements OnInit {
   items: Jeux[];
   loading: boolean;
-  mode: number = 0;
-  modeTheme: number = 0;
+  mode = 0;
+  modeTheme = 0;
   icon = '';
+  modal = false;
+  selectedId: number;
 
-  constructor(public messageService: MessageService, public jeuxService: JeuxService) {
+  constructor(public router: Router, public messageService: MessageService, public jeuxService: JeuxService) {
     this.loading = false;
     this.items = [];
   }
@@ -33,6 +36,7 @@ export class AccueilComponent implements OnInit {
       }
     );
   }
+
   onTriNom(): void {
     console.log('Mode : ' + this.mode);
     this.mode++;
@@ -57,5 +61,10 @@ export class AccueilComponent implements OnInit {
       this.icon = '';
       this.items = this.jeuxService.triJeuxTheme(this.items);
     }
+  }
+
+  voirJeux(id: number): void {
+    this.selectedId = id;
+    this.modal = true;
   }
 }

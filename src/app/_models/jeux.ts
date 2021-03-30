@@ -1,10 +1,13 @@
 export interface Jeux {
+  id;
   nom;
   description;
   regles;
   url_media;
   theme;
+  theme_id;
   editeur;
+  editeur_id;
   duree;
   langue;
   nombre_joueur;
@@ -12,6 +15,9 @@ export interface Jeux {
   age;
   categorie;
   mecanique;
+  commentaires;
+  statistiques;
+  tarif;
 }
 
 export interface Theme {

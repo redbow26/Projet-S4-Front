@@ -25,7 +25,9 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { FormGameComponent } from './form-game/form-game.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {CardModule} from 'primeng/card';
+import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
+import { GameModalComponent } from './game-modal/game-modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -39,7 +41,8 @@ registerLocaleData(localeFr, 'fr');
     LpSolverTestComponent,
     FormGameComponent,
     LpSolverTestComponent,
-    AccueilComponent
+    AccueilComponent,
+    GameModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ registerLocaleData(localeFr, 'fr');
     FormsModule,
     TabMenuModule,
     CardModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule,
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},

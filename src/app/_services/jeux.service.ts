@@ -71,6 +71,14 @@ export class JeuxService {
       );
   }
 
+  getJeu(id: number): Observable<Jeux> {
+    return this.http.get<any>(environment.apiUrl + `/jeux/${id}`, httpOptions)
+      .pipe(
+        map(rep => rep.data.item),
+        catchError(err => throwError(err))
+      );
+  }
+
   triJeuxNom(items: Jeux[], sort?: number): Jeux[] {
     const itemsCopie = [...items];
     if (sort === undefined) {return items ; }

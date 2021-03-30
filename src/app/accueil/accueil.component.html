@@ -3,14 +3,18 @@
 </div>
 <p-button label="Trier par nom" icon="pi pi-filter" (onClick)="onTriNom()"></p-button><p-button label="Trier par thème" icon="pi pi-filter" style="margin: 10px;" (onClick)="onTriTheme()"></p-button>
 <div class="cardsBox" *ngIf="!loading">
-  <p-card class="uneCard" header="{{jeu.nom}}" subheader="Card Subheader" *ngFor="let jeu of items">
+  <p-card class="uneCard" *ngFor="let jeu of items" header="{{jeu.nom}}" >
     <ng-template pTemplate="header">
-      <img alt="Card" src="assets/showcase/images/usercard.png">
+      <img alt="Game Image" [src]="jeu.url_media">
     </ng-template>
-    <p>{{jeu.nom}}</p>
+    <p>{{jeu.description}}</p>
     <ng-template pTemplate="footer">
-      <p-button label="Save" icon="pi pi-check"></p-button>
-      <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+      <p-button label="Voir plus" icon="pi pi-info" (onClick)="voirJeux(jeu.id)"></p-button>
     </ng-template>
   </p-card>
 </div>
+
+
+<p-dialog [(visible)]="modal" [modal]="true" [dismissableMask]="true" (onHide)="modal = false">
+  <app-game-modal *ngIf="modal" [id]="selectedId"></app-game-modal>
+</p-dialog>
