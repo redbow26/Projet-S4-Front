@@ -1,0 +1,95 @@
+<div class="p-fluid p-formgrid p-grid" [formGroup]="form" >
+  <div class="p-field p-col">
+    <label for="name">Nom</label>
+    <input id="name" type="text" pInputText formControlName="nom">
+    <div *ngIf="form.get('nom').invalid && form.get('nom').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="description">Description</label>
+    <input id="description" type="text" pInputText formControlName="description">
+    <div *ngIf="form.get('description').invalid && form.get('description').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="theme">Theme</label>
+    <input id="theme" type="text" pInputText formControlName="theme">
+    <div *ngIf="form.get('theme').invalid && form.get('theme').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="editeur">Editeur</label>
+    <input id="editeur" type="text" pInputText formControlName="editeur">
+    <div *ngIf="form.get('editeur').invalid && form.get('editeur').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="mecanique">Mecanique</label>
+    <input id="mecanique" type="text" pInputText formControlName="mecanique">
+    <div *ngIf="form.get('mecanique').invalid && form.get('mecanique').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="url_media">Url Media</label>
+    <input id="url_media" type="text" pInputText formControlName="url_media">
+    <div *ngIf="form.get('url_media').invalid && form.get('url_media').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="categories">Categorie</label>
+    <input id="categories" type="text" pInputText formControlName="categorie">
+    <div *ngIf="form.get('categorie').invalid && form.get('categorie').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="regle">Regle</label>
+    <input id="regle" type="text" pInputText formControlName="regle">
+    <div *ngIf="form.get('nom').invalid && form.get('nom').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="langue">Langue</label>
+    <input id="langue" type="text" pInputText formControlName="langue">
+    <div *ngIf="form.get('langue').invalid && form.get('langue').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="nb_player">Nombre de joueur</label>
+    <input id="nb_player" type="number" pInputText formControlName="nombre_joueur">
+    <div *ngIf="form.get('nombre_joueur').invalid && form.get('nombre_joueur').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="age">Age</label>
+    <input id="age" type="number" pInputText formControlName="age">
+    <div *ngIf="form.get('age').invalid && form.get('age').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="poids">Poids</label>
+    <input id="poids" type="number" pInputText formControlName="poids">
+    <div *ngIf="form.get('poids').invalid && form.get('poids').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+  <div class="p-field p-col">
+    <label for="duree">duree</label>
+    <input id="duree" type="number" pInputText formControlName="duree">
+    <div *ngIf="form.get('duree').invalid && form.get('duree').touched" class="card-panel red accent-1">
+      Erreur
+    </div>
+  </div>
+
+  <button (click)="sendForm()">Valider</button>
+</div>

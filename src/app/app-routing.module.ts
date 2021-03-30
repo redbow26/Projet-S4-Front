@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LpSolverTestComponent} from './lp-solver-test/lp-solver-test.component';
+import {FormGameComponent} from './form-game/form-game.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'form-jeux', component: FormGameComponent},
   {path: 'ro', component: LpSolverTestComponent}
 ];
 
