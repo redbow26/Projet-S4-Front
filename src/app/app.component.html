@@ -1,11 +1,7 @@
-<ul>
-  <li *ngIf="authService.isLoggedOut$ | async"><a [routerLink]="['/login']">Login</a></li>
-  <li *ngIf="authService.isLoggedIn$ | async"><a [routerLink]="['/profile']">Profile</a></li>
-  <li *ngIf="authService.isLoggedIn$ | async"><button (click)="logout()">logout</button></li>
-  <li><a [routerLink]="['/ro']">Exo RO</a></li>
-</ul>
+
+<p-tabMenu [model]="items$ | async"></p-tabMenu>
+
 <router-outlet></router-outlet>
 
 <p-toast position="top-right" key="main"></p-toast>
 
-<button (click)="show()">test</button>
