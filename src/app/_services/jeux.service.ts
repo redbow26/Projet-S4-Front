@@ -3,7 +3,8 @@ import {Observable, of, throwError} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
-import {Jeux} from '../_models/jeux';
+import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -14,10 +15,35 @@ const httpOptions = {
 })
 export class JeuxService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
+  }
+
+  getMecaniques(): Observable<Mecanique[]> {
+    return this.http.get<any>(environment.apiUrl + '/mecanics', httpOptions)
+      .pipe(
+        map(rep => rep.data.items),
+        catchError(err => throwError(err))
+      );
+  }
+
+  getEditeurs(): Observable<Editeur[]> {
+    return this.http.get<any>(environment.apiUrl + '/editeurs', httpOptions)
+      .pipe(
+        map(rep => rep.data.items),
+        catchError(err => throwError(err))
+      );
+  }
+
+  getThemes(): Observable<Theme[]> {
+    return this.http.get<any>(environment.apiUrl + '/themes', httpOptions)
+      .pipe(
+        map(rep => rep.data.items),
+        catchError(err => throwError(err))
+      );
   }
 
   postJeu(jeux: Jeux): void {
+    console.log(jeux);
     this.http.post(environment.apiUrl + '/jeux', {
       nom: jeux.nom,
       description: jeux.description,
@@ -31,13 +57,10 @@ export class JeuxService {
       duree: jeux.duree,
       categories: jeux.categorie,
       mecanique: jeux.mecanique
-    }, httpOptions).pipe(
-      tap(rep => console.log(rep)),
-      shareReplay(),
-      catchError(err => {
-        return throwError(err);
-        // return of('');
-      }));
+    }, httpOptions).subscribe(rep => {
+      console.log(rep);
+      this.router.navigateByUrl('/');
+    });
   }
 
   getJeux(): Observable<Jeux[]> {

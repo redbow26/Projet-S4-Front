@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Jeux} from '../_models/jeux';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {JeuxService} from '../_services/jeux.service';
+import {Editeur, Mecanique, Theme} from '../_models/jeux';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-form-game',
@@ -11,17 +12,49 @@ import {JeuxService} from '../_services/jeux.service';
 export class FormGameComponent implements OnInit {
 
   form: FormGroup;
+  themes: Theme[];
+  mecaniques: Mecanique[];
+  editeurs: Editeur[];
 
-  constructor(public jeuxService: JeuxService) {
+  constructor(private messageService: MessageService, public jeuxService: JeuxService) {
   }
 
   ngOnInit(): void {
+    this.jeuxService.getThemes().subscribe(
+      themes => {
+        this.themes = themes;
+      },
+      (err) => {
+        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
+      }
+    );
+    this.jeuxService.getEditeurs().subscribe(
+      editeurs => {
+        this.editeurs = editeurs;
+      },
+      (err) => {
+        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
+      }
+    );
+    this.jeuxService.getMecaniques().subscribe(
+      mecaniques => {
+        this.mecaniques = mecaniques;
+      },
+      (err) => {
+        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
+      }
+    );
+
+    console.log(this.themes);
+    console.log(this.editeurs);
+    console.log(this.mecaniques);
+
     this.form = new FormGroup({
       nom: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       description: new FormControl('', Validators.required),
-      theme: new FormControl('', Validators.required),
-      editeur: new FormControl('', Validators.required),
-      mecanique: new FormControl('', Validators.required),
+      theme: new FormControl(1, Validators.required),
+      editeur: new FormControl(1, Validators.required),
+      mecanique: new FormControl(1, Validators.required),
       url_media: new FormControl(''),
       categorie: new FormControl('', Validators.required),
       regle: new FormControl('', Validators.required),
@@ -35,21 +68,6 @@ export class FormGameComponent implements OnInit {
 
   sendForm(): void {
     if (this.form.invalid) { return; }
-    const jeu: Jeux = {
-      nom: this.form.get('nom'),
-      description: this.form.get('description'),
-      regles: this.form.get('regles'),
-      url_media: this.form.get('url_media'),
-      theme: this.form.get('theme'),
-      editeur: this.form.get('editeur'),
-      duree: this.form.get('duree'),
-      langue: this.form.get('langue'),
-      nombre_joueur: this.form.get('nombre_joueur'),
-      poids: this.form.get('poids'),
-      age: this.form.get('age'),
-      categorie: this.form.get('categorie'),
-      mecanique: this.form.get('mecanique'),
-    };
-    this.jeuxService.postJeu(jeu);
+    this.jeuxService.postJeu(this.form.value);
   }
 }

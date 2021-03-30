@@ -24,9 +24,6 @@ export class LoginComponent implements OnInit {
     password: new FormControl('secret00', [Validators.required])
   });
 
-  private tokenStorage;
-  private roles;
-
   constructor(private messageService: MessageService, private authService: AuthentificationService, private router: Router,
               private route: ActivatedRoute) {
   }
@@ -63,7 +60,7 @@ export class LoginComponent implements OnInit {
       );
 
 
-    this.authService.login(this.email.value, this.password.value).subscribe(
+    /* this.authService.login(this.email.value, this.password.value).subscribe(
           data => {
             this.tokenStorage.saveToken(data.access_token);
             this.tokenStorage.saveUser(data.user$);
@@ -78,7 +75,6 @@ export class LoginComponent implements OnInit {
             this.messageService.add({severity: 'error', summary: 'Erreur', detail: err.error.data.values[0], key: 'main'});
           }
         );
-
-
+     */
   }
 }
