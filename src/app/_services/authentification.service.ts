@@ -64,6 +64,11 @@ export class AuthentificationService {
         }));
   }
 
+  register(firstname: string, name: string, nickname: string, email: string, password: string): void{
+    console.log('firstname', firstname, ' name', name, ' nickname', nickname, ' email', email, ' 0password', password);
+    this.http.post<any>(`${environment.apiUrl}/auth/register`, {nom: firstname, prenom: name, pseudo: nickname, email, password}, httpOptions).subscribe(console.log);
+  }
+
   logout(): void {
     const oldUser = this.userValue;
     this.http.post<any>(`${environment.apiUrl}/auth/logout`, {}, httpOptions).subscribe(
