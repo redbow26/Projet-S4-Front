@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "javascript-lp-solver": "^0.4.24",
+    "moment": "^2.29.1",
     "ngx-markdown": "^11.1.2",
     "ngx-moment": "^5.0.0",
     "primeflex": "^2.0.0",
