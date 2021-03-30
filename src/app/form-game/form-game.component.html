@@ -15,24 +15,21 @@
   </div>
   <div class="p-field p-col">
     <label for="theme">Theme</label>
-    <input id="theme" type="text" pInputText formControlName="theme">
-    <div *ngIf="form.get('theme').invalid && form.get('theme').touched" class="card-panel red accent-1">
-      Erreur
-    </div>
+    <select id="theme" formControlName="theme"  >
+      <option *ngFor="let theme of themes" [value]="theme.id" >{{ theme.nom }}</option>
+    </select>
   </div>
   <div class="p-field p-col">
     <label for="editeur">Editeur</label>
-    <input id="editeur" type="text" pInputText formControlName="editeur">
-    <div *ngIf="form.get('editeur').invalid && form.get('editeur').touched" class="card-panel red accent-1">
-      Erreur
-    </div>
+    <select id="editeur" formControlName="editeur"  >
+      <option *ngFor="let editeur of editeurs" [value]="editeur.id" >{{ editeur.nom }}</option>
+    </select>
   </div>
   <div class="p-field p-col">
     <label for="mecanique">Mecanique</label>
-    <input id="mecanique" type="text" pInputText formControlName="mecanique">
-    <div *ngIf="form.get('mecanique').invalid && form.get('mecanique').touched" class="card-panel red accent-1">
-      Erreur
-    </div>
+    <select id="mecanique" formControlName="mecanique">
+      <option *ngFor="let mecanique of mecaniques" [value]="mecanique.id" >{{ mecanique.nom }}</option>
+    </select>
   </div>
   <div class="p-field p-col">
     <label for="url_media">Url Media</label>

@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
     item.push({ label: 'Médusathèque', routerLink: [''] });
     if (isLoggedIn) {
       item.push({ label: 'Profile',  routerLink: '/profile' });
+      item.push({ label: 'Ajouter jeux',  routerLink: '/form-jeux' });
       item.push({ label: 'Logout',  command: (onClick) => this.logout(), routerLink: '' });
     } else {
       item.push({ label: 'Login',  routerLink: '/login'});

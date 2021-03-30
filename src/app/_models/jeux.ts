@@ -13,3 +13,18 @@ export interface Jeux {
   categorie;
   mecanique;
 }
+
+export interface Theme {
+  id: number;
+  nom: string;
+}
+
+export interface Mecanique {
+  id: number;
+  nom: string;
+}
+
+export interface Editeur {
+  id: number;
+  nom: string;
+}
