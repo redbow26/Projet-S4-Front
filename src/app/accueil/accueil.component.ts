@@ -36,7 +36,7 @@ export class AccueilComponent implements OnInit {
   onTriNom(): void {
     console.log('Mode : ' + this.mode);
     this.mode++;
-    if (this.mode == 1) { // tri croissant par nom
+    if (this.mode === 1) { // tri croissant par nom
       this.icon = 'pi pi-chevron-up';
       this.items = this.jeuxService.triJeuxNom(this.items, 1);
     }else {  // liste de départ
@@ -49,7 +49,7 @@ export class AccueilComponent implements OnInit {
   onTriTheme(): void {
     console.log('Mode : ' + this.modeTheme);
     this.modeTheme++;
-    if (this.modeTheme == 1) { // tri croissant par nom
+    if (this.modeTheme === 1) { // tri croissant par nom
       this.icon = 'pi pi-chevron-up';
       this.items = this.jeuxService.triJeuxTheme(this.items, 1);
     }else {  // liste de départ
