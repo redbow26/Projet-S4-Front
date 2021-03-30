@@ -47,4 +47,16 @@ export class JeuxService {
         catchError(err => throwError(err))
       );
   }
+
+  triJeuxNom(items: Jeux[], sort?: number): Jeux[] {
+    const itemsCopie = [...items];
+    if (sort === undefined) {return items ; }
+    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.nom > y.nom ? 1 : -1); }
+  }
+
+  triJeuxTheme(items: Jeux[], sort?: number): Jeux[] {
+    const itemsCopie = [...items];
+    if (sort === undefined) {return items ; }
+    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.theme > y.theme ? 1 : -1); }
+  }
 }

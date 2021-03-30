@@ -11,6 +11,9 @@ import {Jeux} from '../_models/jeux';
 export class AccueilComponent implements OnInit {
   items: Jeux[];
   loading: boolean;
+  mode: number = 0;
+  modeTheme: number = 0;
+  icon = '';
 
   constructor(public messageService: MessageService, public jeuxService: JeuxService) {
     this.loading = false;
@@ -29,5 +32,30 @@ export class AccueilComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+  onTriNom(): void {
+    console.log('Mode : ' + this.mode);
+    this.mode++;
+    if (this.mode == 1) { // tri croissant par nom
+      this.icon = 'pi pi-chevron-up';
+      this.items = this.jeuxService.triJeuxNom(this.items, 1);
+    }else {  // liste de départ
+      this.mode = 0;
+      this.icon = '';
+      this.items = this.jeuxService.triJeuxNom(this.items);
+    }
+  }
+
+  onTriTheme(): void {
+    console.log('Mode : ' + this.modeTheme);
+    this.modeTheme++;
+    if (this.modeTheme == 1) { // tri croissant par nom
+      this.icon = 'pi pi-chevron-up';
+      this.items = this.jeuxService.triJeuxTheme(this.items, 1);
+    }else {  // liste de départ
+      this.modeTheme = 0;
+      this.icon = '';
+      this.items = this.jeuxService.triJeuxTheme(this.items);
+    }
   }
 }
