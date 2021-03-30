@@ -1,0 +1,13 @@
+body{
+
+}
+
+.cardsBox{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.uneCard{
+  margin: 5px;
+  width: 300px;
+}

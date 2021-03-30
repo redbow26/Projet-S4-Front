@@ -1,0 +1,15 @@
+<div class="loading" *ngIf="loading">
+  Loading...
+</div>
+<div class="cardsBox" *ngIf="!loading">
+  <p-card class="uneCard" header="{{jeu.nom}}" subheader="Card Subheader" *ngFor="let jeu of items">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="assets/showcase/images/usercard.png">
+    </ng-template>
+    <p>{{jeu.nom}}</p>
+    <ng-template pTemplate="footer">
+      <p-button label="Save" icon="pi pi-check"></p-button>
+      <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+    </ng-template>
+  </p-card>
+</div>

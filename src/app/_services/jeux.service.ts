@@ -5,7 +5,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Jeux} from '../_models/jeux';
-import {ANONYMOUS_USER} from './authentification.service';
+import {catchError, map} from 'rxjs/operators';
+import {Jeux} from '../_models/jeux';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -40,5 +41,12 @@ export class JeuxService {
           return throwError(err);
           // return of('');
         }));
+
+  getJeux(): Observable<Jeux[]> {
+    return this.http.get<any>(environment.apiUrl + '/jeux', httpOptions)
+      .pipe(
+        map(rep => rep.data.item),
+        catchError(err => throwError(err))
+      );
   }
 }

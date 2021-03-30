@@ -20,6 +20,11 @@ import { ProfileComponent } from './profile/profile.component';
 import {UserService} from './_services/user.service';
 import { LpSolverTestComponent } from './lp-solver-test/lp-solver-test.component';
 import {MarkdownModule} from 'ngx-markdown';
+import { AccueilComponent } from './accueil/accueil.component';
+import {MenubarModule} from 'primeng/menubar';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
 import { FormGameComponent } from './form-game/form-game.component';
 
 registerLocaleData(localeFr, 'fr');
@@ -31,6 +36,8 @@ registerLocaleData(localeFr, 'fr');
     ProfileComponent,
     LpSolverTestComponent,
     FormGameComponent
+    LpSolverTestComponent,
+    AccueilComponent
   ],
     imports: [
         BrowserModule,
@@ -44,6 +51,21 @@ registerLocaleData(localeFr, 'fr');
         ReactiveFormsModule,
         FormsModule
     ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MarkdownModule.forRoot(),
+    AppRoutingModule,
+    MomentModule,
+    MessagesModule,
+    ToastModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MenubarModule,
+    TabMenuModule,
+    CardModule,
+    ButtonModule
+  ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
