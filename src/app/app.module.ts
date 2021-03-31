@@ -27,7 +27,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import {CardModule} from 'primeng/card';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
-import { GameModalComponent } from './game-modal/game-modal.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameAddCommentModalComponent } from './game-add-comment-modal/game-add-comment-modal.component';
 
 registerLocaleData(localeFr, 'fr');
@@ -43,7 +43,7 @@ registerLocaleData(localeFr, 'fr');
     FormGameComponent,
     LpSolverTestComponent,
     AccueilComponent,
-    GameModalComponent,
+    GameDetailsComponent,
     GameAddCommentModalComponent
   ],
   imports: [

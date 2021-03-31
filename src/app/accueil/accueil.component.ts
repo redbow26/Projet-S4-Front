@@ -16,9 +16,6 @@ export class AccueilComponent implements OnInit {
   mode = 0;
   modeTheme = 0;
   icon = '';
-  modalDetail = false;
-  modalForm = false;
-  selectedId: number;
 
   constructor(public router: Router, public messageService: MessageService,
               public jeuxService: JeuxService, public authService: AuthentificationService) {
@@ -64,15 +61,5 @@ export class AccueilComponent implements OnInit {
       this.icon = '';
       this.items = this.jeuxService.triJeuxTheme(this.items);
     }
-  }
-
-  voirDetail(id: number): void {
-    this.selectedId = id;
-    this.modalDetail = true;
-  }
-
-  voirForm(id: number): void {
-    this.selectedId = id;
-    this.modalForm = true;
   }
 }

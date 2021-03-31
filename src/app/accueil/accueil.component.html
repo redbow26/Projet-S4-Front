@@ -9,17 +9,9 @@
     </ng-template>
     <p>{{jeu.description}}</p>
     <ng-template pTemplate="footer">
-      <p-button label="Voir plus" icon="pi pi-info" (onClick)="voirDetail(jeu.id)"></p-button>
-      <p-button *ngIf="authService.isLoggedIn$ | async" label="Donner un avis" icon="pi pi-info" (onClick)="voirForm(jeu.id)"></p-button>
+      <p-button label="Voir plus" icon="pi pi-info" (onClick)="router.navigate(['/jeux', jeu.id])"></p-button>
     </ng-template>
   </p-card>
 </div>
 
 
-<p-dialog [(visible)]="modalDetail" [modal]="true" [dismissableMask]="true" (onHide)="modalDetail = false">
-  <app-game-modal *ngIf="modalDetail" [id]="selectedId"></app-game-modal>
-</p-dialog>
-
-<p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modalForm" [modal]="true" [dismissableMask]="true" (onHide)="modalForm = false">
-  <app-game-add-comment-modal *ngIf="modalForm" [id]="selectedId" (validate)="modalForm = false"></app-game-add-comment-modal>
-</p-dialog>
