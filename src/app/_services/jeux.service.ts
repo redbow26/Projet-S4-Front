@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
 import {Router} from '@angular/router';
-import {AuthentificationService} from "./authentification.service";
+import {AuthentificationService} from './authentification.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -90,6 +90,20 @@ export class JeuxService {
       );
   }
 
+  getJeuxTrie(sort: string): Observable<Jeux[]> {
+    let url = environment.apiUrl + `/jeux`;
+    if (sort === 'nom' || sort === 'note') {
+      url += `?sort=${sort}`;
+    }
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(rep => {
+          return rep.data.item;
+        }),
+        catchError(err => throwError(err))
+      );
+  }
+
   getJeuxFiltre(theme?: number, editeur?: number, age?: number, nbJoueurs?: number): Observable<Jeux[]> {
     const params = new HttpParams();
 
@@ -113,17 +127,6 @@ export class JeuxService {
       );
   }
 
-  triJeuxNom(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.nom > y.nom ? 1 : -1); }
-  }
-
-  triJeuxTheme(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.theme > y.theme ? 1 : -1); }
-  }
 
   ajouteAchat(lieu: string, date_achat: string, prix: number, jeu_id: number): void{
     const id = this.authService.userValue.id;
