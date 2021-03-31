@@ -1,7 +1,41 @@
 <div class="loading" *ngIf="loading">
   Loading...
 </div>
-<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="onTriNom()"></p-button><p-button label="Trier par thème" icon="pi pi-filter" style="margin: 10px;" (onClick)="onTriTheme()"></p-button>
+<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="onTriNom()"></p-button>
+<p-button label="Trier par thème" icon="pi pi-filter" style="margin: 10px;" (onClick)="onTriTheme()"></p-button>
+
+<div class="filter">
+  <div class="p-fluid p-formgrid p-grid" [formGroup]="formFilter" >
+    <div class="p-field p-col">
+      <label for="theme">Theme</label>
+      <select id="theme" formControlName="theme"  >
+        <option *ngFor="let theme of themes" [value]="theme.id" >{{ theme.nom }}</option>
+      </select>
+    </div>
+    <div class="p-field p-col">
+      <label for="editeur">Editeur</label>
+      <select id="editeur" formControlName="editeur"  >
+        <option *ngFor="let editeur of editeurs" [value]="editeur.id" >{{ editeur.nom }}</option>
+      </select>
+    </div>
+    <div class="p-field p-col">
+      <label for="nb_player">Nombre de joueur</label>
+      <input id="nb_player" type="number" pInputText formControlName="nombre_joueur">
+      <div *ngIf="formFilter.get('nombre_joueur').invalid && formFilter.get('nombre_joueur').touched" class="card-panel red accent-1">
+        Erreur
+      </div>
+    </div>
+    <div class="p-field p-col">
+      <label for="age">Age</label>
+      <input id="age" type="number" pInputText formControlName="age">
+      <div *ngIf="formFilter.get('age').invalid && formFilter.get('age').touched" class="card-panel red accent-1">
+        Erreur
+      </div>
+    </div>
+    <p-button label="Filtrer" (onClick)="filter()"></p-button>
+  </div>
+</div>
+
 <div class="cardsBox" *ngIf="!loading">
   <p-card class="uneCard" *ngFor="let jeu of items" header="{{jeu.nom}}" >
     <ng-template pTemplate="header">
