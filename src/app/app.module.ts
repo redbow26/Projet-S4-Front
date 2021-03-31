@@ -30,6 +30,7 @@ import {ButtonModule} from 'primeng/button';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameAddCommentModalComponent } from './game-add-comment-modal/game-add-comment-modal.component';
 import { PurchaseComponent } from './purchase/purchase.component';
+import {TableModule} from 'primeng/table';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -63,6 +64,7 @@ registerLocaleData(localeFr, 'fr');
     CardModule,
     ButtonModule,
     DialogModule,
+    TableModule,
   ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
