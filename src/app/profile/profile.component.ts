@@ -5,6 +5,7 @@ import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
 import {AuthentificationService} from '../_services/authentification.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {JeuxService} from '../_services/jeux.service';
 
 declare var solver: any;
 
@@ -21,7 +22,9 @@ export class ProfileComponent implements OnInit {
   objets = [];
 
   // tslint:disable-next-line:max-line-length
-  constructor(private userService: UserService, private messageService: MessageService, private router: Router, private authService: AuthentificationService) {
+  constructor(private userService: UserService, private messageService: MessageService,
+              private router: Router, private authService: AuthentificationService,
+              private jeuxService: JeuxService) {
     this.loading = false;
   }
 
@@ -118,5 +121,14 @@ export class ProfileComponent implements OnInit {
       detail: message,
     });
     console.log(message);
+  }
+
+  vente(jeuId): void {
+    this.jeuxService.removeAchat(jeuId)
+      .subscribe(
+      detail => {
+          this.detail = detail;
+        }
+      );
   }
 }

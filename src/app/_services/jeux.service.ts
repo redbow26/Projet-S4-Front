@@ -133,4 +133,12 @@ export class JeuxService {
     console.log('location', lieu, ' dateBuy', date_achat, ' price', prix, ' id', jeu_id);
     this.http.post<any>(`${environment.apiUrl}/users/${id}/achat`, {lieu, date_achat, prix, jeu_id}, httpOptions).subscribe(console.log);
   }
+
+  removeAchat(jeu_id: number): Observable<any>{
+    const id = this.authService.userValue.id;
+    return this.http.post<any>(`${environment.apiUrl}/users/${id}/vente`, {jeu_id}, httpOptions).pipe(
+      map(rep => rep.data.item),
+      catchError(err => throwError(err))
+    );
+  }
 }
