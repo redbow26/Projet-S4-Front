@@ -33,7 +33,8 @@ export class InscriptionComponent implements OnInit {
     password: new FormGroup({
       pwd: new FormControl('', [Validators.required, Validators.minLength(8), customValidators.hasUpper, customValidators.hasNumber]),
       confirmPwd: new FormControl('')
-    }, [customValidators.passwordConfirming])
+    }, [customValidators.passwordConfirming]),
+    RGPD: new FormControl('', [Validators.requiredTrue])
   });
 
   constructor(private authService: AuthentificationService, private router: Router) {
