@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   detail: any;
   form: FormGroup;
   objets = [];
+  jeuSelected;
+  modal = false;
 
   // tslint:disable-next-line:max-line-length
   constructor(private userService: UserService, private messageService: MessageService,
@@ -128,7 +130,11 @@ export class ProfileComponent implements OnInit {
       .subscribe(
       detail => {
           this.detail = detail;
-        }
-      );
+        });
+  }
+
+  showModal(jeu): void {
+    this.jeuSelected = jeu;
+    this.modal = true;
   }
 }

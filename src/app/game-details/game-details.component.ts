@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthentificationService} from '../_services/authentification.service';
 
 @Component({
-  selector: 'app-game-modal',
+  selector: 'app-game-details',
   templateUrl: './game-details.component.html',
   styleUrls: ['./game-details.component.css']
 })
