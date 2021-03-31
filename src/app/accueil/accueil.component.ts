@@ -13,12 +13,6 @@ import {AuthentificationService} from '../_services/authentification.service';
 export class AccueilComponent implements OnInit {
   items: Jeux[];
   loading: boolean;
-  mode = 0;
-  modeTheme = 0;
-  icon = '';
-  modalDetail = false;
-  modalForm = false;
-  selectedId: number;
 
   constructor(public router: Router, public messageService: MessageService,
               public jeuxService: JeuxService, public authService: AuthentificationService) {
@@ -40,39 +34,17 @@ export class AccueilComponent implements OnInit {
     );
   }
 
-  onTriNom(): void {
-    console.log('Mode : ' + this.mode);
-    this.mode++;
-    if (this.mode === 1) { // tri croissant par nom
-      this.icon = 'pi pi-chevron-up';
-      this.items = this.jeuxService.triJeuxNom(this.items, 1);
-    }else {  // liste de départ
-      this.mode = 0;
-      this.icon = '';
-      this.items = this.jeuxService.triJeuxNom(this.items);
-    }
+  trie(critere: string): void {
+    this.jeuxService.getJeuxTrie(critere).subscribe(
+      jeux => {
+        this.items = jeux;
+      },
+      (err) => {
+        this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
+        this.loading = false;
+      }
+    );
+
   }
 
-  onTriTheme(): void {
-    console.log('Mode : ' + this.modeTheme);
-    this.modeTheme++;
-    if (this.modeTheme === 1) { // tri croissant par nom
-      this.icon = 'pi pi-chevron-up';
-      this.items = this.jeuxService.triJeuxTheme(this.items, 1);
-    }else {  // liste de départ
-      this.modeTheme = 0;
-      this.icon = '';
-      this.items = this.jeuxService.triJeuxTheme(this.items);
-    }
-  }
-
-  voirDetail(id: number): void {
-    this.selectedId = id;
-    this.modalDetail = true;
-  }
-
-  voirForm(id: number): void {
-    this.selectedId = id;
-    this.modalForm = true;
-  }
 }

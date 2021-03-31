@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
@@ -89,15 +89,17 @@ export class JeuxService {
       );
   }
 
-  triJeuxNom(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.nom > y.nom ? 1 : -1); }
-  }
-
-  triJeuxTheme(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.theme > y.theme ? 1 : -1); }
+  getJeuxTrie(sort: string): Observable<Jeux[]> {
+    let url = environment.apiUrl + `/jeux`;
+    if (sort === 'nom' || sort === 'note') {
+      url += `?sort=${sort}`;
+    }
+    return this.http.get<any>(url, httpOptions )
+      .pipe(
+        map(rep => {
+          return rep.data.item;
+        }),
+        catchError(err => throwError(err))
+      );
   }
 }

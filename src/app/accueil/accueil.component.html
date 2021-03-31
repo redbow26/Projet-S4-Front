@@ -1,7 +1,7 @@
 <div class="loading" *ngIf="loading">
   Loading...
 </div>
-<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="onTriNom()"></p-button><p-button label="Trier par thème" icon="pi pi-filter" style="margin: 10px;" (onClick)="onTriTheme()"></p-button>
+<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="trie('nom')"></p-button><p-button label="Trier par note" icon="pi pi-filter" style="margin: 10px;" (onClick)="trie('note')"></p-button>
 <div class="cardsBox" *ngIf="!loading">
   <p-card class="uneCard" *ngFor="let jeu of items" header="{{jeu.nom}}" >
     <ng-template pTemplate="header">
@@ -9,17 +9,7 @@
     </ng-template>
     <p>{{jeu.description}}</p>
     <ng-template pTemplate="footer">
-      <p-button label="Voir plus" icon="pi pi-info" (onClick)="voirDetail(jeu.id)"></p-button>
-      <p-button *ngIf="authService.isLoggedIn$ | async" label="Donner un avis" icon="pi pi-info" (onClick)="voirForm(jeu.id)"></p-button>
+      <p-button label="Voir plus" icon="pi pi-info" ></p-button>
     </ng-template>
   </p-card>
 </div>
-
-
-<p-dialog [(visible)]="modalDetail" [modal]="true" [dismissableMask]="true" (onHide)="modalDetail = false">
-  <app-game-modal *ngIf="modalDetail" [id]="selectedId"></app-game-modal>
-</p-dialog>
-
-<p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modalForm" [modal]="true" [dismissableMask]="true" (onHide)="modalForm = false">
-  <app-game-add-comment-modal *ngIf="modalForm" [id]="selectedId" (validate)="modalForm = false"></app-game-add-comment-modal>
-</p-dialog>
