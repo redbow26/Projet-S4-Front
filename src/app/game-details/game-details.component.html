@@ -14,9 +14,14 @@
     <li>Categorie: {{jeu.categorie}}</li>
   </ul>
 
-  <p-button *ngIf="authService.isLoggedIn$ | async" label="Ajouter un commentaire" icon="pi pi-info" (onClick)="modal = true"></p-button>
+  <p-button *ngIf="authService.isLoggedIn$ | async" label="Ajouter un commentaire" icon="pi pi-info" (onClick)="modalComm = true"></p-button>
+  <p-button *ngIf="authService.isLoggedIn$ | async" label="Acheter" icon="pi pi-info" (onClick)="modalPurchase = true"></p-button>
 </div>
 
-<p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modal" [modal]="true" [dismissableMask]="true" (onHide)="modal = false">
-  <app-game-add-comment-modal *ngIf="modal" [id]="jeu.id" (validate)="modal = false"></app-game-add-comment-modal>
+<p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modalComm" [modal]="true" [dismissableMask]="true" (onHide)="modalComm = false">
+  <app-game-add-comment-modal *ngIf="modalComm" [id]="jeu.id" (validate)="modalComm = false"></app-game-add-comment-modal>
+</p-dialog>
+
+<p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modalPurchase" [modal]="true" [dismissableMask]="true" (onHide)="modalPurchase = false">
+  <app-purchase *ngIf="modalPurchase" (validate)="modalPurchase = false" [id]="jeu.id"></app-purchase>
 </p-dialog>

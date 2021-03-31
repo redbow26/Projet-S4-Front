@@ -29,6 +29,7 @@ import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameAddCommentModalComponent } from './game-add-comment-modal/game-add-comment-modal.component';
+import { PurchaseComponent } from './purchase/purchase.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -44,7 +45,8 @@ registerLocaleData(localeFr, 'fr');
     LpSolverTestComponent,
     AccueilComponent,
     GameDetailsComponent,
-    GameAddCommentModalComponent
+    GameAddCommentModalComponent,
+    PurchaseComponent
   ],
   imports: [
     BrowserModule,

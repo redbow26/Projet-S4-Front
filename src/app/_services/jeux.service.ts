@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
 import {Router} from '@angular/router';
+import {AuthentificationService} from "./authentification.service";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class JeuxService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private authService: AuthentificationService) {
   }
 
   getMecaniques(): Observable<Mecanique[]> {
@@ -99,5 +100,11 @@ export class JeuxService {
     const itemsCopie = [...items];
     if (sort === undefined) {return items ; }
     if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.theme > y.theme ? 1 : -1); }
+  }
+
+  ajouteAchat(lieu: string, date_achat: string, prix: number, jeu_id: number): void{
+    const id = this.authService.userValue.id;
+    console.log('location', lieu, ' dateBuy', date_achat, ' price', prix, ' id', jeu_id);
+    this.http.post<any>(`${environment.apiUrl}/users/${id}/achat`, {lieu, date_achat, prix, jeu_id}, httpOptions).subscribe(console.log);
   }
 }

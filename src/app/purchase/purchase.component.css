@@ -1,0 +1,22 @@
+#body {
+  font-weight: bold;
+  background-color: #595861;
+  color: white;
+  padding: 10px;
+  min-width: 400px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+input {
+  border-radius: 20px;
+  border: solid 2px black;
+  padding: 5px;
+}

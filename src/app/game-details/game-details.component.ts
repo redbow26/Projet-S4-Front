@@ -12,7 +12,8 @@ import {AuthentificationService} from '../_services/authentification.service';
 })
 export class GameDetailsComponent implements OnInit {
   jeu: Jeux;
-  modal = false;
+  modalComm = false;
+  modalPurchase = false;
   id: number;
 
   constructor(public route: ActivatedRoute, public messageService: MessageService,
