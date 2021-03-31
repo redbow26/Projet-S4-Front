@@ -37,7 +37,7 @@
 </div>
 
 <div class="cardsBox" *ngIf="!loading">
-  <p-card class="uneCard" *ngFor="let jeu of items" header="{{jeu.nom}}" >
+  <p-card class="uneCard" *ngFor="let jeu of jeux" header="{{jeu.nom}}" >
     <ng-template pTemplate="header">
       <img alt="Game Image" [src]="jeu.url_media">
     </ng-template>
@@ -47,5 +47,7 @@
     </ng-template>
   </p-card>
 </div>
+
+<p-paginator [rows]="5" [totalRecords]="items.length" [rowsPerPageOptions]="[5, 10, 15, {showAll: 'tout afficher'}]" (onPageChange)="paginate($event)"></p-paginator>
 
 

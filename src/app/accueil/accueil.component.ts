@@ -13,14 +13,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AccueilComponent implements OnInit {
   items: Jeux[];
+  jeux: Jeux[];
+
   loading: boolean;
   formFilter: FormGroup;
-
   themes: Theme[];
   editeurs: Editeur[];
 
   constructor(public router: Router, public messageService: MessageService,
-              public jeuxService: JeuxService, public authService: AuthentificationService) {
+              public jeuxService: JeuxService) {
     this.loading = false;
     this.items = [];
   }
@@ -51,6 +52,7 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeux().subscribe(
       jeux => {
         this.items = jeux;
+        this.setJeux();
         this.loading = false;
       },
       (err) => {
@@ -65,7 +67,6 @@ export class AccueilComponent implements OnInit {
       nombre_joueur: new FormControl(null, [Validators.min(2), Validators.max(8)]),
       age: new FormControl(null, [Validators.min(1), Validators.max(16)]),
     });
-
   }
 
   filter(): void {
@@ -73,6 +74,7 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeuxFiltre( this.formFilter.get('theme').value, this.formFilter.get('editeur').value, this.formFilter.get('age').value, this.formFilter.get('nombre_joueur').value).subscribe(
       jeux => {
         this.items = jeux;
+        this.setJeux();
       },
       (err) => {
         this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
@@ -85,13 +87,22 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeuxTrie(critere).subscribe(
       jeux => {
         this.items = jeux;
+        this.setJeux();
       },
       (err) => {
         this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
         this.loading = false;
       }
     );
+  }
 
+  setJeux(first: number = 0, rows: number = 5): void {
+    this.jeux = this.items.slice(first, first + rows);
+    console.log(this.jeux);
+  }
+
+  paginate(event): void {
+    this.setJeux(event.first, event.rows);
   }
 
 }
