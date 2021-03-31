@@ -9,7 +9,10 @@
 
   <div [formGroup]="form">
     <p-button label="Commander" (onClick)="commander()"></p-button>
-    <input type="number" formControlName="poids">
+    <label>
+      Poids:
+      <input type="number" formControlName="poids">
+    </label>
     <h2>Ma collection de jeux</h2>
 
     <p-table [value]="detail.jeux">
