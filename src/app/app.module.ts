@@ -32,6 +32,7 @@ import { GameAddCommentModalComponent } from './game-add-comment-modal/game-add-
 import { PurchaseComponent } from './purchase/purchase.component';
 import {TableModule} from 'primeng/table';
 import { NewAccueilComponent } from './new-accueil/new-accueil.component';
+import {PaginatorModule} from 'primeng/paginator';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -51,23 +52,24 @@ registerLocaleData(localeFr, 'fr');
     PurchaseComponent,
     NewAccueilComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MarkdownModule.forRoot(),
-    AppRoutingModule,
-    MomentModule,
-    MessagesModule,
-    ToastModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TabMenuModule,
-    CardModule,
-    ButtonModule,
-    DialogModule,
-    TableModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MarkdownModule.forRoot(),
+        AppRoutingModule,
+        MomentModule,
+        MessagesModule,
+        ToastModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        TabMenuModule,
+        CardModule,
+        ButtonModule,
+        DialogModule,
+        TableModule,
+        PaginatorModule,
+    ],
   providers: [AuthentificationService, MessageService,
     {provide: LOCALE_ID, useValue: 'fr-FR'},
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
