@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {catchError, map, shareReplay, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
 import {Router} from '@angular/router';
 
