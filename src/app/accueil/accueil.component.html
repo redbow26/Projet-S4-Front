@@ -1,8 +1,8 @@
 <div class="loading" *ngIf="loading">
   Loading...
 </div>
-<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="onTriNom()"></p-button>
-<p-button label="Trier par thème" icon="pi pi-filter" style="margin: 10px;" (onClick)="onTriTheme()"></p-button>
+<p-button label="Trier par nom" icon="pi pi-filter" (onClick)="trie('nom')"></p-button>
+<p-button label="Trier par note" icon="pi pi-filter" style="margin: 10px;" (onClick)="trie('note')"></p-button>
 
 <div class="filter">
   <div class="p-fluid p-formgrid p-grid" [formGroup]="formFilter" >

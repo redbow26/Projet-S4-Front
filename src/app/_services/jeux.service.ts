@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
 import {Router} from '@angular/router';
-import {AuthentificationService} from "./authentification.service";
+import {AuthentificationService} from './authentification.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -95,13 +95,15 @@ export class JeuxService {
     if (sort === 'nom' || sort === 'note') {
       url += `?sort=${sort}`;
     }
-    return this.http.get<any>(url, httpOptions )
+    return this.http.get<any>(url, httpOptions)
       .pipe(
         map(rep => {
           return rep.data.item;
         }),
         catchError(err => throwError(err))
       );
+  }
+
   getJeuxFiltre(theme?: number, editeur?: number, age?: number, nbJoueurs?: number): Observable<Jeux[]> {
     const params = new HttpParams();
 
