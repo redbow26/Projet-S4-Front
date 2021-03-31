@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
@@ -84,6 +84,29 @@ export class JeuxService {
 
   getJeu(id: number): Observable<Jeux> {
     return this.http.get<any>(environment.apiUrl + `/jeux/${id}`, httpOptions)
+      .pipe(
+        map(rep => rep.data.item),
+        catchError(err => throwError(err))
+      );
+  }
+
+  getJeuxFiltre(theme?: number, editeur?: number, age?: number, nbJoueurs?: number): Observable<Jeux[]> {
+    const params = new HttpParams();
+
+    if (theme && theme !== 0) {
+      params.set('theme', `${theme}`);
+    }
+    if (editeur && editeur !== 0) {
+      params.set('editeur', `${editeur}`);
+    }
+    if (age && age !== 0) {
+      params.set('age', `${age}`);
+    }
+    if (nbJoueurs && nbJoueurs !== 0) {
+      params.set('nbJoueurs', `${nbJoueurs}`);
+    }
+
+    return this.http.get<any>(environment.apiUrl + `/jeux`, {...httpOptions, params} )
       .pipe(
         map(rep => rep.data.item),
         catchError(err => throwError(err))
