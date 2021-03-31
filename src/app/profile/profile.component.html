@@ -7,26 +7,31 @@
   <p>Crée : {{user.created_at | amDateFormat:'LL'}} </p>
   <p>Modifié : {{user.updated_at | amDateFormat:'LL'}} </p>
 
+  <div [formGroup]="form">
+    <p-button label="Commander" (onClick)="commander()"></p-button>
+    <input type="number" formControlName="poids">
+    <h2>Ma collection de jeux</h2>
 
-  <h2>Ma collection de jeux</h2>
+    <p-table [value]="detail.jeux">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Selectionner</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Poids</th>
+          <th>Prix</th>
+        </tr>
+      </ng-template>
 
-  <p-table [value]="detail.jeux">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Nom</th>
-        <th>Description</th>
-        <th>Poids</th>
-        <th>Prix</th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-jeu>
-      <tr>
-        <td>{{jeu.jeu.nom}}</td>
-        <td>{{jeu.jeu.description}}</td>
-        <td>{{jeu.jeu.poids}} kg</td>
-        <td>{{jeu.prix}} €</td>
-      </tr>
-    </ng-template>
-  </p-table>
+      <ng-template pTemplate="body" let-jeu>
+        <tr>
+          <td><input type="checkbox" [id]="jeu.jeu.id" [value]="jeu" (change)="onCheckChange($event, jeu)"></td>
+          <td>{{jeu.jeu.nom}}</td>
+          <td>{{jeu.jeu.description}}</td>
+          <td>{{jeu.jeu.poids}} kg</td>
+          <td>{{jeu.prix}} €</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
