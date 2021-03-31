@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable, of, throwError} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {catchError, map, shareReplay, tap} from 'rxjs/operators';
 import {Editeur, Jeux, Mecanique, Theme} from '../_models/jeux';
 import {Router} from '@angular/router';
-import {AuthentificationService} from "./authentification.service";
+import {AuthentificationService} from './authentification.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -90,17 +90,43 @@ export class JeuxService {
       );
   }
 
-  triJeuxNom(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.nom > y.nom ? 1 : -1); }
+  getJeuxTrie(sort: string): Observable<Jeux[]> {
+    let url = environment.apiUrl + `/jeux`;
+    if (sort === 'nom' || sort === 'note') {
+      url += `?sort=${sort}`;
+    }
+    return this.http.get<any>(url, httpOptions)
+      .pipe(
+        map(rep => {
+          return rep.data.item;
+        }),
+        catchError(err => throwError(err))
+      );
   }
 
-  triJeuxTheme(items: Jeux[], sort?: number): Jeux[] {
-    const itemsCopie = [...items];
-    if (sort === undefined) {return items ; }
-    if (sort > 0) {return itemsCopie.sort((x: Jeux, y: Jeux): number => x.theme > y.theme ? 1 : -1); }
+  getJeuxFiltre(theme?: number, editeur?: number, age?: number, nbJoueurs?: number): Observable<Jeux[]> {
+    const params = new HttpParams();
+
+    if (theme && theme !== 0) {
+      params.set('theme', `${theme}`);
+    }
+    if (editeur && editeur !== 0) {
+      params.set('editeur', `${editeur}`);
+    }
+    if (age && age !== 0) {
+      params.set('age', `${age}`);
+    }
+    if (nbJoueurs && nbJoueurs !== 0) {
+      params.set('nbJoueurs', `${nbJoueurs}`);
+    }
+
+    return this.http.get<any>(environment.apiUrl + `/jeux`, {...httpOptions, params} )
+      .pipe(
+        map(rep => rep.data.item),
+        catchError(err => throwError(err))
+      );
   }
+
 
   ajouteAchat(lieu: string, date_achat: string, prix: number, jeu_id: number): void{
     const id = this.authService.userValue.id;
