@@ -17,7 +17,8 @@ export class GameDetailsComponent implements OnInit {
   id: number;
 
   constructor(public route: ActivatedRoute, public messageService: MessageService,
-              public jeuxService: JeuxService, public authService: AuthentificationService) { }
+              public jeuxService: JeuxService, public authService: AuthentificationService) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

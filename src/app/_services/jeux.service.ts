@@ -70,7 +70,7 @@ export class JeuxService {
       jeu_id: id
     }, httpOptions).subscribe(rep => {
       console.log(rep);
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl(`/jeux/${id}`);
     });
   }
 

@@ -25,3 +25,14 @@
 <p-dialog *ngIf="authService.isLoggedIn$ | async" [(visible)]="modalPurchase" [modal]="true" [dismissableMask]="true" (onHide)="modalPurchase = false">
   <app-purchase *ngIf="modalPurchase" (validate)="modalPurchase = false" [id]="jeu.id"></app-purchase>
 </p-dialog>
+
+<div id="listCom">
+  <div class="Com" *ngFor="let com of jeu.commentaires">
+    <div>
+      Auteur: {{com.user.pseudo}}<br>
+      Publié le: {{com.date_com}}<br>
+      {{com.commentaire}}<br>
+      Note: {{com.note}}<br>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,7 @@ export class AccueilComponent implements OnInit {
       },
       (err) => {
         this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
+        console.log(err);
         this.loading = false;
       }
     );

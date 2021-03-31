@@ -8,7 +8,7 @@
   </div>
   <div class="p-field p-col">
   <label for="note">Note</label>
-  <input id="note" type="text" pInputText formControlName="note">
+  <input id="note" type="number" pInputText formControlName="note">
   <div *ngIf="form.get('note').invalid && form.get('note').touched" class="card-panel red accent-1">
     Erreur
   </div>
