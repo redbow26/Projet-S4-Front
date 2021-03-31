@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
 
   private getMenuItems(isLoggedIn: boolean): MenuItem[] {
     const item: MenuItem[] = [];
-    item.push({ label: 'Médusathèque', routerLink: [''] });
+    item.push({ label: 'Médusathèque', routerLink: ['/liste-jeux'] });
     if (isLoggedIn) {
       item.push({ label: 'Profile',  routerLink: '/profile' });
       item.push({ label: 'Ajouter jeux',  routerLink: '/form-jeux' });
