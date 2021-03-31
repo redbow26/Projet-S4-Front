@@ -31,6 +31,7 @@ import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameAddCommentModalComponent } from './game-add-comment-modal/game-add-comment-modal.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import {TableModule} from 'primeng/table';
+import { NewAccueilComponent } from './new-accueil/new-accueil.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -47,7 +48,8 @@ registerLocaleData(localeFr, 'fr');
     AccueilComponent,
     GameDetailsComponent,
     GameAddCommentModalComponent,
-    PurchaseComponent
+    PurchaseComponent,
+    NewAccueilComponent
   ],
   imports: [
     BrowserModule,

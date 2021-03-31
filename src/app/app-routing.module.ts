@@ -7,9 +7,11 @@ import {InscriptionComponent} from './inscription/inscription.component';
 import {FormGameComponent} from './form-game/form-game.component';
 import {AccueilComponent} from './accueil/accueil.component';
 import {GameDetailsComponent} from './game-details/game-details.component';
+import {NewAccueilComponent} from './new-accueil/new-accueil.component';
 
 const routes: Routes = [
-  {path: '', component: AccueilComponent},
+  {path: '', component: NewAccueilComponent},
+  {path: 'liste-jeux', component: AccueilComponent},
   {path: 'login', component: LoginComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'ro', component: LpSolverTestComponent},
