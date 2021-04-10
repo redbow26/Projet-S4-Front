@@ -105,22 +105,24 @@ export class JeuxService {
   }
 
   getJeuxFiltre(theme?: number, editeur?: number, age?: number, nbJoueurs?: number): Observable<Jeux[]> {
-    const params = new HttpParams();
-
-    if (theme && theme !== 0) {
-      params.set('theme', `${theme}`);
+    let url = environment.apiUrl + `/jeux`;
+    if (theme || editeur || age || nbJoueurs) {
+      url += '?';
+      if (theme !== 0) {
+        url += `theme=${theme}&`;
+      }
+      if (editeur !== 0) {
+        url += `editeur=${editeur}&`;
+      }
+      if (age !== 0) {
+        url += `age=${age}&`;
+      }
+      if (nbJoueurs !== 0) {
+        url += `nbJoueurs=${nbJoueurs}&`;
+      }
+      url = url.slice(0, -1);
     }
-    if (editeur && editeur !== 0) {
-      params.set('editeur', `${editeur}`);
-    }
-    if (age && age !== 0) {
-      params.set('age', `${age}`);
-    }
-    if (nbJoueurs && nbJoueurs !== 0) {
-      params.set('nbJoueurs', `${nbJoueurs}`);
-    }
-
-    return this.http.get<any>(environment.apiUrl + `/jeux`, {...httpOptions, params} )
+    return this.http.get<any>(url, httpOptions )
       .pipe(
         map(rep => rep.data.item),
         catchError(err => throwError(err))

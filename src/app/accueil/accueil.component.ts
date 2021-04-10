@@ -14,6 +14,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class AccueilComponent implements OnInit {
   items: Jeux[];
   jeux: Jeux[];
+  first = 0;
+  rows = 5;
 
   loading: boolean;
   formFilter: FormGroup;
@@ -52,7 +54,7 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeux().subscribe(
       jeux => {
         this.items = jeux;
-        this.setJeux();
+        this.setJeux(this.first, this.rows);
         this.loading = false;
       },
       (err) => {
@@ -75,7 +77,7 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeuxFiltre( this.formFilter.get('theme').value, this.formFilter.get('editeur').value, this.formFilter.get('age').value, this.formFilter.get('nombre_joueur').value).subscribe(
       jeux => {
         this.items = jeux;
-        this.setJeux();
+        this.setJeux(this.first, this.rows);
       },
       (err) => {
         this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
@@ -88,7 +90,7 @@ export class AccueilComponent implements OnInit {
     this.jeuxService.getJeuxTrie(critere).subscribe(
       jeux => {
         this.items = jeux;
-        this.setJeux();
+        this.setJeux(this.first, this.rows);
       },
       (err) => {
         this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'impossible d\'obtenir la liste des jeux' , key: 'main'});
@@ -97,13 +99,15 @@ export class AccueilComponent implements OnInit {
     );
   }
 
-  setJeux(first: number = 0, rows: number = 5): void {
+  setJeux(first: number, rows: number): void {
     this.jeux = this.items.slice(first, first + rows);
     console.log(this.jeux);
   }
 
   paginate(event): void {
-    this.setJeux(event.first, event.rows);
+    this.first = event.first;
+    this.rows = event.rows;
+    this.setJeux(this.first, this.rows);
   }
 
 }
